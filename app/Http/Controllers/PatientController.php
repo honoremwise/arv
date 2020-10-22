@@ -52,6 +52,13 @@ class PatientController extends Controller
        $refillsdata=Refills::all()->toArray();
          return view('refilling',compact('refillsdata'));  
     }
+    //getting all patients in the program
+    public function allpatients()
+    {
+       $allpatients =  new Patient();
+       $allpatients=patient::all()->toArray();
+         return view('allpatients',compact('allpatients'));  
+    }
    
     public function store(Request $request)
     {      

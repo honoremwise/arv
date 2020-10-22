@@ -17,9 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('/patients', 'PatientController@store');
-Route::get('/records', 'PatientController@index');
-Route::post('/saverefills', 'PatientController@saverefills');
+Route::get('/records','PatientController@index');
+Route::get('/patients','PatientController@allpatients');
+Route::post('/saverefills','PatientController@saverefills');
 Route::get('/refill', 'PatientController@refill');
+Route::get('/test', 'CreateArvOrder@posts');
+Route::post('/tests', 'CreateArvOrder@posts');
+Route::get('importExportView', 'MyController@importExportView');
+Route::get('export', 'MyController@export')->name('export');
+Route::post('import', 'MyController@import')->name('import');
 
 Auth::routes();
 

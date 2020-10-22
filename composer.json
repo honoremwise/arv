@@ -9,12 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "automattic/woocommerce": "^3.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/oauth-subscriber": "^0.4.0",
         "laravel/framework": "^7.22.2",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.1"
+        "laravel/ui": "^2.1",
+        "maatwebsite/excel": "^3.1",
+        "symfony/psr-http-message-bridge": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

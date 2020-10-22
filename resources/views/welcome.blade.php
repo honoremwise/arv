@@ -63,6 +63,7 @@
             }
         </style>
     </head>
+    {{csrf_token()}}
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
