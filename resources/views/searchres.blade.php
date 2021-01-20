@@ -12,7 +12,6 @@
            
           <div class="col-md-4"></div>
            <form method="POST" action="/Searchp">
-            @csrf
           <div class="form-group col-md-4">
             <label for="Search">Search:</label>
             <input type="text" class="form-control" placeholder="input patient code" name="search">
@@ -27,7 +26,7 @@
 <th>Phone</th>
 <th>stability_status</th>
 </tr>
-@foreach ($allpatients ?? '' as $patients)
+
 <tr>
 <td>{{$patients['uid']}}</td>
 <td>{{$patients['gender'] }}</td>
@@ -36,7 +35,7 @@
 <td>{{$patients['Phone']}}</td>
 <td>{{$patients['stability_status']}}</td>
 </tr>
-@endforeach
+
 
 </table>
 

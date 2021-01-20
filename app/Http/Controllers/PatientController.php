@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Patient;
 use App\Refills;
 use Illuminate\Support\Carbon;
+// use Illuminate\Support\Facades\DB;
 
 class PatientController extends Controller
 {
@@ -82,8 +83,19 @@ class PatientController extends Controller
     $patients->Referral_health_center=$request['Referral_health_center'];     
     $patients->save();
            
-    return redirect()->back();
+    return redirect()->back()->with('success', 'Data has been added Please Now Search Over Here');;
     
     }
+
+public function getpatient(Request $request){
+        
+ $data = \DB::table('Patient');
+        if( $request->input('uid')){
+            $data = $data->where('uid', 'LIKE', "%" . $request->search . "%");
+        }
+dd($data->uid);
+return view('searchres', compact('data'));    
+  }
+
   
 }

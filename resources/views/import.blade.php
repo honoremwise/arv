@@ -4,11 +4,6 @@
 <div class="container">
     <div class="card bg-light mt-3">
               <div class="card">
-            <div class="card-header"> &nbsp;&nbsp;&nbsp;<a href="{{'/refill'}}" class="btn btn-primary btn-xs">Refill window</a>
-            &nbsp;&nbsp;&nbsp;<a href="{{'/patients'}}" class="btn btn-primary btn-xs">All patients</a>
-              &nbsp;&nbsp;&nbsp;<a href="{{'/importExportView'}}" class="btn btn-primary btn-xs">IMPORT VS Export</a>
-            <!-- maximum year refilling period rage of next fill -->
-            </div>
         <div class="card-body">
             <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
                 @csrf

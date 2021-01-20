@@ -5,14 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">&nbsp;&nbsp;&nbsp;<a href="{{'/refill'}}" class="btn btn-primary btn-xs">Refill window</a>
-                &nbsp;&nbsp;&nbsp;<a href="{{'/patients'}}" class="btn btn-primary btn-xs">All patients</a>
-                  &nbsp;&nbsp;&nbsp;<a href="{{'/importExportView'}}" class="btn btn-primary btn-xs">IMPORT VS Export</a>
-                <!-- maximum year refilling period rage of next fill -->
-                </div>
-
-
-                <div class="card-body">
+                               <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}

@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('/patients', 'PatientController@store');
+Route::post('/Searchp', 'PatientController@getpatient');
 Route::get('/records','PatientController@index');
 Route::get('/patients','PatientController@allpatients');
 Route::post('/saverefills','PatientController@saverefills');
@@ -26,6 +27,7 @@ Route::post('/tests', 'CreateArvOrder@posts');
 Route::get('importExportView', 'MyController@importExportView');
 Route::get('export', 'MyController@export')->name('export');
 Route::post('import', 'MyController@import')->name('import');
+Route::get('/test' ,'PatientSms@SMSnotifier');
 
 Auth::routes();
 
