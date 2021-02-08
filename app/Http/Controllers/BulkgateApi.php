@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class BulkgateApi extends Controller
-{
+class BulkgateApi{
+
 	/**
 	 * End point URL 
 	 * @var string
@@ -25,5 +24,5 @@ class BulkgateApi extends Controller
 	 * @return  array
 	 */
 
-
 }
+

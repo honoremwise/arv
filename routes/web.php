@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('/patients', 'PatientController@store');
-Route::post('/Searchp', 'PatientController@getpatient');
+Route::post('/SearchPatient', 'PatientController@getpatient')->name('SearchPatient');
 Route::get('/records','PatientController@index');
 Route::get('/patients','PatientController@allpatients');
 Route::post('/saverefills','PatientController@saverefills');

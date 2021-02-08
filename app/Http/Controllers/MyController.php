@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Exports\UsersExport;
-use App\Imports\UsersImport;
+use App\Imports\PatientsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class MyController extends Controller
@@ -32,7 +32,7 @@ class MyController extends Controller
     */
     public function import()
     {
-        Excel::import(new UsersImport,request()->file('file'));
+        Excel::import(new PatientsImport,request()->file('file'));
 
         return back();
     }

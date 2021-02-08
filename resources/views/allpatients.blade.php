@@ -11,13 +11,13 @@
           <div class="card-body">
            
           <div class="col-md-4"></div>
-           <form method="POST" action="/Searchp">
+           <form method="POST" action="/SearchPatient">
             @csrf
           <div class="form-group col-md-4">
             <label for="Search">Search:</label>
             <input type="text" class="form-control" placeholder="input patient code" name="search">
           </div> 
-        <form>  
+          </form>  
           <table class="table table-striped">
 <tr>
 <th>UID</th>

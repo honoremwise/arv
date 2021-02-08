@@ -89,15 +89,29 @@ class PatientController extends Controller
     
     }
 
-public function getpatient(Request $request){
+
+    public function getpatient(Request $request){
+    // Get the search value from the request
+    $search = $request->input('uid');
+
+    // Search in the title and body columns from the posts table
+    $patients = Patient::query()
+        ->where('uid', 'LIKE', "%{$search}%")
+        ->get();
+
+    // Return the search view with the resluts compacted
+    return view('searchres',compact('patients'));
+}
+
+// public function getpatient(Request $request){
         
- $data = \DB::table('Patient');
-        if( $request->input('uid')){
-            $data = $data->where('uid', 'LIKE', "%" . $request->search . "%");
-        }
-dd($data->uid);
-return view('searchres', compact('data'));    
-  }
+//  $data = \DB::table('Patient');
+//         if( $request->input('uid')){
+//             $data = $data->where('uid', 'LIKE', "%" . $request->search . "%");
+//         }
+// dd($data->uid);
+// return view('searchres', compact('data'));    
+//   }
 
 public  function AllUsers()
     {
