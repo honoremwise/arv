@@ -10,11 +10,12 @@ use Illuminate\Support\Carbon;
 
 class PatientController extends Controller
 {
-    public function index()
+    public static function index()
     {
        $patients= new Patient();
        $patients->all();
-       dd($patients);
+       echo $patients;
+       return $patients;
     }
     public function saverefills(Request $request )
     {
@@ -47,17 +48,18 @@ class PatientController extends Controller
      return view('refilling',compact('refillsdata')); 
     }
 //getting all data from refills table
-    public function refill()
+    public  static function refill()
     {
        $refillsdata =  new Refills();
        $refillsdata=Refills::all()->toArray();
          return view('refilling',compact('refillsdata'));  
     }
     //getting all patients in the program
-    public function allpatients()
+    public static function allpatients()
     {
        $allpatients =  new Patient();
        $allpatients=patient::all()->toArray();
+      // dump($allpatients);
          return view('allpatients',compact('allpatients'));  
     }
    
@@ -96,6 +98,14 @@ public function getpatient(Request $request){
 dd($data->uid);
 return view('searchres', compact('data'));    
   }
+
+public  function AllUsers()
+    {
+       $allpatients =  new Patient();
+       $allpatients=patient::all()->toArray();
+      // dump($allpatients);
+         return view('allpatients',compact('allpatients'));  
+    }
 
   
 }

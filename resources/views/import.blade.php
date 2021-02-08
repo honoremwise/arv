@@ -9,8 +9,8 @@
                 @csrf
                 <input type="file" name="file" class="form-control">
                 <br>
-                <button class="btn btn-success">Import patients Data</button>
-                <a class="btn btn-warning" href="{{ route('export') }}">Export Patients Data</a>
+                <button class="btn btn-info">Import patients Data</button>
+                <a class="btn btn-info" href="{{ route('export') }}">Export Patients Data</a>
             </form>
         </div>
     </div>
