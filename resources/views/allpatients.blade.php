@@ -26,6 +26,7 @@
 <th>arv_type</th>
 <th>Phone</th>
 <th>stability_status</th>
+<th>Options</th>
 </tr>
 @foreach ($allpatients ?? '' as $patients)
 <tr>
@@ -35,6 +36,7 @@
 <td>{{$patients['arv_type']}}</td>
 <td>{{$patients['Phone']}}</td>
 <td>{{$patients['stability_status']}}</td>
+<td>Edit</td>
 </tr>
 @endforeach
 

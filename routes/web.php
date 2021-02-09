@@ -16,19 +16,22 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/patients', 'PatientController@store');
-Route::post('/SearchPatient', 'PatientController@getpatient')->name('SearchPatient');
-Route::get('/records','PatientController@index');
-Route::get('/patients','PatientController@allpatients');
-Route::post('/saverefills','PatientController@saverefills');
-Route::get('/refill', 'PatientController@refill');
+
+
 Route::get('/test', 'CreateArvOrder@posts');
 Route::post('/tests', 'CreateArvOrder@posts');
-Route::get('importExportView', 'MyController@importExportView');
-Route::get('export', 'MyController@export')->name('export');
-Route::post('import', 'MyController@import')->name('import');
-Route::get('/test' ,'PatientSms@SMSnotifier');
+
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/refill', 'PatientController@refill')->middleware('auth');
+Route::get('importExportView', 'MyController@importExportView')->middleware('auth');
+Route::get('export', 'MyController@export')->name('export')->middleware('auth');
+Route::post('import', 'MyController@import')->name('import')->middleware('auth');
+Route::post('/patients', 'PatientController@store')->middleware('auth');
+Route::post('/SearchPatient', 'PatientController@getpatient')->name('SearchPatient')->middleware('auth');
+Route::get('/records','PatientController@index')->middleware('auth');
+Route::get('/patients','PatientController@allpatients')->middleware('auth');
+Route::post('/saverefills','PatientController@saverefills')->middleware('auth');
