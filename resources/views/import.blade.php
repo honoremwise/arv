@@ -7,7 +7,7 @@
         <div class="card-body">
             <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="file" name="file" class="form-control">
+                <input type="file" name="file" class="form-control" required accept=".xls,.csv,.xlsx">
                 <br>
                 <button class="btn btn-info">Import patients Data</button>
                 <a class="btn btn-info" href="{{ route('export') }}">Export Patients Data</a>

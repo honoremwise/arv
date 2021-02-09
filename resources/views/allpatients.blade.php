@@ -36,7 +36,10 @@
 <td>{{$patients['arv_type']}}</td>
 <td>{{$patients['Phone']}}</td>
 <td>{{$patients['stability_status']}}</td>
-<td>Edit</td>
+<td>
+  <a href="Edit/{{$patients['id']}}">Edit</a> 
+
+</td>
 </tr>
 @endforeach
 

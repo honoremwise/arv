@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 @section('content')
 
@@ -11,30 +10,23 @@
           <div class="card-body">
            
           <div class="col-md-4"></div>
-           <form method="POST" action="/Searchp">
-            @csrf
-          <div class="form-group col-md-4">
-            <label for="Search">Search:</label>
-            <input type="text" class="form-control" placeholder="input patient code" name="search">
-          </div> 
-        <form>  
-          <table class="table table-striped">
+              <table class="table table-striped">
+                <th colspan="6"><center>ARV Users</center></th>
 <tr>
-<th>UID</th>
-<th>Gender</th>
-<th>Location</th>
-<th>arv_type</th>
-<th>Phone</th>
-<th>stability_status</th>
+<th>Name</th>
+<th>User Role</th>
+<th>Email</th>
+<th>Options</th>
 </tr>
-@foreach ($allpatients ?? '' as $patients)
+@foreach ($allUser ?? '' as $users)
 <tr>
-<td>{{$patients['uid']}}</td>
-<td>{{$patients['gender'] }}</td>
-<td>{{$patients['location_address']}}</td>
-<td>{{$patients['arv_type']}}</td>
-<td>{{$patients['Phone']}}</td>
-<td>{{$patients['stability_status']}}</td>
+<td>{{$users['name']}}</td>
+<td>{{$users['user_role'] }}</td>
+<td>{{$users['email']}}</td>
+<td>
+  <a href="del/{{$users['id']}}">Revoke Access</a> 
+
+</td>
 </tr>
 @endforeach
 

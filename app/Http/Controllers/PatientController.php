@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Patient;
+use App\User;
 use App\Refills;
 use Illuminate\Support\Carbon;
-// use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
+
 
 class PatientController extends Controller
 {
-    // public static function index()
-    // {
-    //    $patients = new Patient();
-    //    $patients -> all();
-    //    echo $patients;
-    //    return $patients;
-    // }
+    public static function index()
+    {
+       $patients = new Patient();
+       $patients -> all();
+         return $patients;
+    }
     public function saverefills(Request $request )
     {
         $request->validate
@@ -108,13 +109,46 @@ class PatientController extends Controller
    return view('searchres',compact('patients'));
   }
 
-     public  function AllUsers()
+  public  function AllUsers()
     {
        $allpatients =  new Patient();
        $allpatients=patient::all()->toArray();
       // dump($allpatients);
        return view('allpatients',compact('allpatients'));  
     }
-
+  public function ShowPatient($id) 
+   {
+      $patients = DB::select('select * from patients where id = ?',[$id]);
+      //dd($patients);
+      return view('editpatient',['patients'=>$patients]);
+    }
+public function RemoveUser(Request $request,$id) {
   
+  if(User::find($id))
+  {
+          $user = User::find($id);
+          $user->delete();
+            
+  return redirect('/patients')->with('status', 'Profile updated!');
+   }
+}
+  public function Edit(Request $request,$id) {
+      
+      $gender   = $request->input('gender');
+      $location = $request->input('location');
+      $arvtype  = $request->input('arvtype');
+      $dob      = $request->input('dob');
+      $Phone   = $request->input('Phone');
+      $stability_status = $request->input('stability_status');
+      $refill_schedule  = $request->input('refill_schedule');
+      $Referral_health_center = $request->input('Referral_health_center');
+    
+      DB::update('update patients set location_address = ?,gender = ?,DoB = ?,Phone = ?,stability_status = ?,refill_schedule = ?,Referral_health_center = ? where id = ?',
+        [$location,$gender,$dob,$Phone,$stability_status,$refill_schedule,$Referral_health_center,$id]);
+     return redirect('/patients')->with('status', 'Profile updated!');
+
+      
+   }
+      
+   //}  
 }

@@ -50,28 +50,56 @@
                                 </li>
                             @endif
                         @else
+                        @if(Auth::user()->user_role=="admin") 
                  <li class="nav-item">
                     <a href="{{'/home'}}" class="nav-link">Record patients</a>
                 </li>
-                <li class="nav-item">
-                  <a href="{{'/refill'}}" class="nav-link">Refillings</a>
-                 </li>
+                  <li class="nav-item">
+                 <a href="{{'/importExportView'}}" class="nav-link">imp vs exp</a>
+                <!-- maximum year refilling period rage of next fill-->
+                </li> 
+                
                  <li class="nav-item">
                 <a href="{{'/patients'}}" class="nav-link">patients</a>
                 </li>
-                              
-                <li class="nav-item">
-                 <a href="{{'/importExportView'}}" class="nav-link">imp vs exp</a>
-                <!-- maximum year refilling period rage of next fill -->
+                 <li class="nav-item">
+                  <a href="{{'/refill'}}" class="nav-link">Refillings</a>
+                 </li>
+                 <li class="nav-item">
+                  <a href="{{'/Users'}}" class="nav-link">Users</a>
+                 </li>
+                @endif 
+                @if (Auth::user()->user_role=='arv-cc') 
+                    <li class="nav-item">
+                  <a href="{{'/refill'}}" class="nav-link">Refillings</a>
+                 </li>
+                @endif
+                @if (Auth::user()->user_role=='arv-health') 
+                    <li class="nav-item">
+                    <a href="{{'/home'}}" class="nav-link">Record patients</a>
                 </li>
+                  <li class="nav-item">
+                 <a href="{{'/importExportView'}}" class="nav-link">imp vs exp</a>
+                <!-- maximum year refilling period rage of next fill-->
+                </li> 
+                
+                 <li class="nav-item">
+                <a href="{{'/patients'}}" class="nav-link">patients</a>
+                </li>
+                 <li class="nav-item">
+                  <a href="{{'/refill'}}" class="nav-link">Refillings</a>
+                 </li>
+                @endif
+                              
+              
                 <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} {{Auth::user()->user_role}} <span class="caret"></span>
+                                </a>
 
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
-                </div>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                 <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>

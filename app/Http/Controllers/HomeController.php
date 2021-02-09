@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Patient;
 use App\Refills;
+use App\User;
 use App\Http\Controllers\BulkgateApi;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
@@ -104,4 +105,14 @@ class HomeController extends Controller
           ]);
       }
     }
+
+Public function GetUsers()
+{
+      $allUser =  new User();
+       $allUser=User::all()->toArray();
+      // dump($allpatients);
+       return view('users',compact('allUser')); 
+
+    }
+
 }

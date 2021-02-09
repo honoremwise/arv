@@ -35,3 +35,8 @@ Route::post('/SearchPatient', 'PatientController@getpatient')->name('SearchPatie
 Route::get('/records','PatientController@index')->middleware('auth');
 Route::get('/patients','PatientController@allpatients')->middleware('auth');
 Route::post('/saverefills','PatientController@saverefills')->middleware('auth');
+Route:: get('Edit/{id}','PatientController@ShowPatient')->middleware('auth');
+Route:: post('Edit/{id}','PatientController@Edit')->middleware('auth');
+Route:: get('del/{id}','PatientController@RemoveUser')->middleware('password.confirm');
+;
+Route::get('/Users','HomeController@GetUsers')->middleware('auth');

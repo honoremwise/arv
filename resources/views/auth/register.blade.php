@@ -32,6 +32,7 @@
                                 <select  class="form-control" name="roles" value="{{ old('email') }}">
                                     <option>arv-health</option>
                                     <option>arv-cc</option>
+                                    <option>admin</option>
                                     </select>
                             </div>
                         </div>
