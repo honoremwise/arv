@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -51,4 +52,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function redirectToGoogle()
+    {
+       return Socialite::driver('google')->redirect();
+    }
+    public function handleProvidercallback()
+    {
+      $user = Socialite::driver('google')->user();
+    }
+
 }

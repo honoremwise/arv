@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+//     $request->fulfill();
 
+//     return redirect('/home');
+// })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/test', 'CreateArvOrder@posts');
 Route::post('/tests', 'CreateArvOrder@posts');
 
 
-
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/refill', 'PatientController@refill')->middleware('auth');
@@ -38,5 +43,11 @@ Route::post('/saverefills','PatientController@saverefills')->middleware('auth');
 Route:: get('Edit/{id}','PatientController@ShowPatient')->middleware('auth');
 Route:: post('Edit/{id}','PatientController@Edit')->middleware('auth');
 Route:: get('del/{id}','PatientController@RemoveUser')->middleware('password.confirm');
-;
 Route::get('/Users','HomeController@GetUsers')->middleware('auth');
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
+

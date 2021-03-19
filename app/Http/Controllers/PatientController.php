@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class PatientController extends Controller
 {
+   public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
     public static function index()
     {
        $patients = new Patient();
@@ -23,7 +27,8 @@ class PatientController extends Controller
         $request->validate
         ([
             'UID'       =>'required|max:20',
-            'refilldate'=>'required',         
+            'refilldate'=>'required|after:yesterday',
+                  
         ]); 
 
     $refills                = new Refills();
@@ -122,16 +127,16 @@ class PatientController extends Controller
       //dd($patients);
       return view('editpatient',['patients'=>$patients]);
     }
-public function RemoveUser(Request $request,$id) {
+// public function RemoveUser(Request $request,$id) {
   
-  if(User::find($id))
-  {
-          $user = User::find($id);
-          $user->delete();
+//   if(User::find($id))
+//   {
+//           $user = User::find($id);
+//           $user->delete();
             
-  return redirect('/patients')->with('status', 'Profile updated!');
-   }
-}
+//   return redirect('/patients')->with('status', 'Profile updated!');
+//    }
+// }
   public function Edit(Request $request,$id) {
       
       $gender   = $request->input('gender');

@@ -10,8 +10,8 @@ use App\User;
 use App\Http\Controllers\BulkgateApi;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
-
 use App\Mail\Refills as RefilsMaler;
+use App\SmsLogs;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','verified']);
     }
 
     /**
@@ -99,10 +99,25 @@ class HomeController extends Controller
             'application_token' => env('BULK_GATE_TOKEN'),
             'sender_id_value'   => "Kasha",
             'sender_id'         => "gText",
-            'number'      => $fullnumber, 
+            'number'      => "+250781549903", 
             'text'        => 'hihi', 
             'country'     => 'rw',
           ]);
+        	if(isset($response->json()['data']['sms_id']))
+			{
+				$smsLogs                   = new SmsLogs();
+				$smsLogs->phone            = $fullnumber;
+				$smsLogs->http_code        = $response->status();
+				$smsLogs->patient_uid = $patients->uid;
+				$smsLogs->sms_id           = $response->json()['data']['sms_id'];
+				$smsLogs->status           = $response->json()['data']['status'];
+			  $smsLogs ->save();		
+			}
+			else
+			{
+				continue;
+			}
+
       }
     }
 

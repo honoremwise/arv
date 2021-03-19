@@ -22,7 +22,10 @@
                        <div class="form-group row">
                             <label for="text" class="col-md-4 col-form-label text-md-right"> UID </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="UID" autofocus required>
+                                <input type="text" class="form-control" name="UID" autofocus>
+                                @error('UID') {{$message}}
+    
+@enderror
                                                                                         </div>
                         </div>
                    
@@ -30,6 +33,10 @@
                             <label for="text" class="col-md-4 col-form-label text-md-right"> Date of refill </label>
                             <div class="col-md-6">
                                 <input type="date" class="form-control"name="refilldate" >
+                                @error('refilldate')
+                                 {{$message}}
+    
+                                @enderror
                              </div>
                         </div>
                         
